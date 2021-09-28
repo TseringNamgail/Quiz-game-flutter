@@ -15,8 +15,17 @@ class MyApp extends StatefulWidget {
 
 class MyAppState extends State<MyApp> {
   var questionIndex = 0;
+  var totalScore = 0;
 
-  void answerQuestion() {
+  void resetQuiz(){
+    setState(() {
+    questionIndex = 0;
+    totalScore = 0;
+  });
+}
+  void answerQuestion(int score) {
+    totalScore += score;
+
     setState(() {
       questionIndex = questionIndex + 1;
     });
@@ -24,20 +33,42 @@ class MyAppState extends State<MyApp> {
 
   var question = [
     {
-      'questionText': 'What\s your fav color',
-      'answers': ['Blue', 'Black', 'Yellow', 'Green'],
+      'questionText':
+          'In which year, Alexander the Great become the king of Macedonia',
+      'answers': [
+        {'text': '336 BC', 'score': 2},
+        {'text': '323 BC', 'score': 0},
+        {'text': '350 BC', 'score': 0},
+        {'text': '200 BC', 'score': 0},
+      ],
     },
     {
-      'questionText': 'What\s your fav food',
-      'answers': ['Pasta', 'Rice', 'Chicken', 'Egg'],
+      'questionText': 'On which island of France, Napoleon was born',
+      'answers': [
+        {'text': 'Corsika', 'score': 2},
+        {'text': 'Saint Helena', 'score': 0},
+        {'text': 'Elba', 'score': 0},
+        {'text': 'Oleron', 'score': 0},
+      ],
     },
     {
-      'questionText': 'What\s your fav place',
-      'answers': ['India', 'USA', 'Bhutan', 'Japan'],
+      'questionText': 'In which year America got independence',
+      'answers': [
+        {'text': '1760', 'score': 0},
+        {'text': '1776', 'score': 2},
+        {'text': '1780', 'score': 0},
+        {'text': '1782', 'score': 0},
+      ],
     },
     {
-      'questionText': 'What\s your fav movie',
-      'answers': ['Batman', 'Spiderman', 'Ironman', 'Avengers'],
+      'questionText':
+          'Who is known as the Artist of the world famous painting "Mona Lisa"',
+      'answers': [
+        {'text': ' Filippo Brunelleschi', 'score': 0},
+        {'text': 'Michelangelo', 'score': 0},
+        {'text': 'Vincent van Gogh', 'score': 0},
+        {'text': 'Leonardo da Vinci', 'score': 2},
+      ],
     },
   ];
 
@@ -54,7 +85,7 @@ class MyAppState extends State<MyApp> {
                 answerQuestion: answerQuestion,
                 questionIndex: questionIndex,
               )
-            : Result(),
+            : Result(totalScore, resetQuiz),
       ),
     );
   }
