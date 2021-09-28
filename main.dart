@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import './Quiz.dart';
-import './Result.dart';
+import './quiz.dart';
+import './result.dart';
 
 void main() {
   runApp(MyApp());
@@ -16,6 +16,23 @@ class MyApp extends StatefulWidget {
 class MyAppState extends State<MyApp> {
   var questionIndex = 0;
   var totalScore = 0;
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text('My First app'),
+        ),
+        body: questionIndex < question.length
+            ? Quiz(
+          question: question,
+          answerQuestion: answerQuestion,
+          questionIndex: questionIndex,
+        ) : Result(totalScore, resetQuiz),
+      ),
+    );
+  }
 
   void resetQuiz(){
     setState(() {
@@ -71,22 +88,4 @@ class MyAppState extends State<MyApp> {
       ],
     },
   ];
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text('My First app'),
-        ),
-        body: questionIndex < question.length
-            ? Quiz(
-                question: question,
-                answerQuestion: answerQuestion,
-                questionIndex: questionIndex,
-              )
-            : Result(totalScore, resetQuiz),
-      ),
-    );
-  }
 }
