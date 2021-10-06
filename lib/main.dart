@@ -17,12 +17,13 @@ class MyAppState extends State<MyApp> {
   var questionIndex = 0;
   var totalScore = 0;
 
-  void resetQuiz(){
+  void resetQuiz() {
     setState(() {
-    questionIndex = 0;
-    totalScore = 0;
-  });
-}
+      questionIndex = 0;
+      totalScore = 0;
+    });
+  }
+
   void answerQuestion(int score) {
     totalScore += score;
 
@@ -77,7 +78,9 @@ class MyAppState extends State<MyApp> {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          title: Text('My First app'),
+          title: Center(
+            child: Text('FUN QUIZ_My First App'),
+          ),
         ),
         body: questionIndex < question.length
             ? Quiz(

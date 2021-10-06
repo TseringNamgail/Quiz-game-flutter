@@ -23,7 +23,7 @@ class Quiz extends StatelessWidget {
     final c = questionDictionary.map((answer) {
       return Answer(() {
         answerQuestion(answer['score']);
-      }, answer['Text']);
+      }, answer['text']);
     }).toList();
     
     return Column(
